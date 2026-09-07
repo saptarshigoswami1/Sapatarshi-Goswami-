@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Saptarshi Goswami | Filmmaker & Editor</title>
+  <title>Saptarshi Goswami | Filmmaker, Photographer & Editor</title>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root {
@@ -15,20 +15,32 @@
     body { background-color: var(--bg); color: var(--text); font-family: 'Plus Jakarta Sans', sans-serif; line-height: 1.6; }
     
     /* Navbar */
-    nav { position: fixed; top: 0; width: 100%; z-index: 1000; background: rgba(7,7,9,0.9); border-bottom: 1px solid var(--border); padding: 16px 24px; text-align: center; }
+    nav { position: fixed; top: 0; width: 100%; z-index: 1000; background: rgba(7,7,9,0.9); border-bottom: 1px solid var(--border); padding: 16px 24px; text-align: center; backdrop-filter: blur(10px); }
     .logo { font-family: 'Cinzel', serif; font-size: 1.2rem; font-weight: 700; color: #fff; text-decoration: none; letter-spacing: 2px; }
     .logo span { color: var(--accent); }
 
-    /* Hero */
-    .hero { padding: 150px 24px 80px; text-align: center; background: #000; }
-    .hero-title { font-family: 'Cinzel', serif; font-size: 3rem; font-weight: 800; color: #fff; margin-bottom: 16px; }
-    .hero-subtitle { color: #d1d5db; max-width: 600px; margin: 0 auto 30px; }
+    /* Hero / Cover Page */
+    .hero { position: relative; padding: 180px 24px 100px; text-align: center; background: #000; overflow: hidden; }
+    .hero-title { font-family: 'Cinzel', serif; font-size: clamp(2.5rem, 6vw, 4.5rem); font-weight: 800; color: #fff; margin-bottom: 16px; letter-spacing: -0.5px; }
+    .hero-subtitle { color: #d1d5db; max-width: 700px; margin: 0 auto 30px; font-size: 1.1rem; }
+    
+    .stat-strip { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; margin-bottom: 40px; }
+    .stat-pill { background: rgba(20,20,28,0.9); border: 1px solid var(--border); padding: 10px 18px; border-radius: 6px; font-size: 0.85rem; font-weight: 600; color: #fff; }
+    .stat-pill strong { color: var(--accent-warm); }
 
-    section { padding: 80px 24px; max-width: 1200px; margin: 0 auto; }
-    .section-title { font-family: 'Cinzel', serif; font-size: 2.2rem; margin-bottom: 40px; text-align: center; }
+    section { padding: 80px 24px; max-width: 1200px; margin: 0 auto; border-bottom: 1px solid var(--border); }
+    .section-tag { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 3px; color: var(--accent); font-weight: 700; display: block; margin-bottom: 10px; }
+    .section-title { font-family: 'Cinzel', serif; font-size: clamp(1.8rem, 3.5vw, 2.4rem); margin-bottom: 20px; color: #fff; }
+    .section-desc { color: var(--text-muted); font-size: 1rem; max-width: 750px; margin-bottom: 40px; }
+
+    /* Pillars & Overview */
+    .pillars-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px; margin-top: 30px; }
+    .pillar-card { background: var(--bg-surface); border: 1px solid var(--border); border-left: 3px solid var(--accent); border-radius: var(--radius); padding: 24px; }
+    .pillar-card h3 { font-size: 1.1rem; color: #fff; margin-bottom: 10px; }
+    .pillar-card p { font-size: 0.88rem; color: var(--text-muted); }
 
     /* Films Grid */
-    .films-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
+    .films-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 30px; }
     .film-card { background: var(--bg-surface); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; text-decoration: none; color: inherit; transition: var(--transition); display: flex; flex-direction: column; }
     .film-card:hover { transform: translateY(-5px); border-color: var(--accent); box-shadow: 0 10px 30px rgba(230,57,70,0.2); }
     
@@ -38,51 +50,105 @@
     
     .play-overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.4); display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.3s; }
     .film-card:hover .play-overlay { opacity: 1; }
-    .play-btn { width: 60px; height: 60px; background: #ff0000; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 20px rgba(255,0,0,0.6); }
+    .play-btn { width: 58px; height: 58px; background: #ff0000; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 20px rgba(255,0,0,0.6); }
     .play-triangle { border-top: 10px solid transparent; border-bottom: 10px solid transparent; border-left: 16px solid #fff; margin-left: 4px; }
     
     .film-body { padding: 24px; display: flex; flex-direction: column; flex-grow: 1; }
-    .film-title-en { font-size: 1.3rem; font-weight: 800; color: #fff; margin-bottom: 5px; }
-    .film-title-as { font-size: 1.1rem; color: var(--accent-warm); margin-bottom: 15px; font-weight: 700; }
-    .film-meta { font-size: 0.85rem; color: var(--text-muted); border-bottom: 1px solid var(--border); padding-bottom: 15px; margin-bottom: 15px; }
-    .watch-btn { margin-top: auto; padding: 12px; background: #1a1a24; border: 1px solid #ff0000; color: #fff; text-align: center; border-radius: 6px; font-weight: 700; transition: 0.3s; }
+    .film-title-en { font-size: 1.25rem; font-weight: 800; color: #fff; margin-bottom: 4px; }
+    .film-title-as { font-size: 1.05srem; color: var(--accent-warm); margin-bottom: 12px; font-weight: 700; }
+    .film-meta { font-size: 0.82rem; color: var(--text-muted); border-bottom: 1px solid var(--border); padding-bottom: 12px; margin-bottom: 12px; }
+    .film-synopsis { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 20px; flex-grow: 1; }
+    .watch-btn { margin-top: auto; padding: 11px; background: #191926; border: 1px solid #ff0000; color: #fff; text-align: center; border-radius: 6px; font-weight: 700; transition: 0.3s; }
     .film-card:hover .watch-btn { background: #ff0000; }
 
+    /* Photo Galleries */
+    .photo-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
+    .photo-card { background: var(--bg-surface); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
+    .photo-wrap { aspect-ratio: 4/3; background: #000; overflow: hidden; }
+    .photo-wrap.vertical { aspect-ratio: 3/4; }
+    .photo-wrap img { width: 100%; height: 100%; object-fit: cover; }
+    .photo-info { padding: 18px; }
+    .photo-info h4 { font-size: 1rem; color: #fff; margin-bottom: 6px; }
+    .photo-info p { font-size: 0.82rem; color: var(--text-muted); }
+
+    /* Delivery & Specs */
+    .specs-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px; }
+    .spec-box { background: var(--bg-surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 28px; }
+    .spec-box h3 { font-size: 1.15rem; color: #fff; margin-bottom: 14px; }
+    .spec-box p { font-size: 0.88rem; color: var(--text-muted); line-height: 1.6; }
+
     /* Contact */
-    .contact { text-align: center; padding: 60px 20px; background: #0a0a0f; border-radius: 12px; margin-top: 40px; border: 1px solid var(--border); }
-    .contact a { display: inline-block; padding: 12px 24px; background: var(--accent); color: #fff; text-decoration: none; border-radius: 6px; font-weight: 700; margin-top: 15px; }
-    footer { text-align: center; padding: 30px; border-top: 1px solid var(--border); margin-top: 50px; font-size: 0.85rem; color: var(--text-muted); }
+    .contact { text-align: center; padding: 80px 20px; background: linear-gradient(180deg, #14141e 0%, #0d0d14 100%); border-radius: 12px; margin-top: 50px; border: 1px solid var(--border); max-width: 800px; margin-left: auto; margin-right: auto; }
+    .contact a { display: inline-block; padding: 14px 28px; background: var(--accent); color: #fff; text-decoration: none; border-radius: 6px; font-weight: 700; margin-top: 20px; box-shadow: 0 6px 20px rgba(230,57,70,0.35); }
+    footer { text-align: center; padding: 30px; border-top: 1px solid var(--border); margin-top: 60px; font-size: 0.85rem; color: var(--text-muted); }
   </style>
 </head>
 <body>
 
   <nav>
-    <div class="nav-container">
+    <div class="nav-container" style="max-width:1200px; margin:0 auto; display:flex; justify-content:space-between; align-items:center;">
       <a href="#" class="logo">SAPTARSHI<span>.</span> SG PRODUCTIONS</a>
+      <div style="font-size:0.8rem; color:var(--text-muted);">LIVE TOUR & FILM PORTFOLIO</div>
     </div>
   </nav>
 
+  <!-- COVER PAGE -->
   <header class="hero">
     <div class="hero-content">
+      <div class="hero-tag">Live Performance & Kinetic Motion Photography</div>
       <h1 class="hero-title">SAPTARSHI GOSWAMI</h1>
-      <p class="hero-subtitle">Visual storyteller & narrative director crafting cinematic short films, high-contrast photography, and kinetic live stage coverage.</p>
+      <p class="hero-subtitle">Visual storyteller and narrative director crafting cinematic short films, high-contrast theatrical documentation, and kinetic live stage & concert coverage.</p>
+      
+      <div class="stat-strip">
+        <div class="stat-pill"><strong>11+ Years</strong> Editing</div>
+        <div class="stat-pill"><strong>6+ Years</strong> Photography</div>
+        <div class="stat-pill"><strong>2+ Years</strong> Filmmaking</div>
+        <div class="stat-pill"><strong>3</strong> Short Films &bull; <strong>1</strong> Feature Film</div>
+      </div>
     </div>
   </header>
 
-  <section id="films">
-    <h2 class="section-title">Films Directed by Saptarshi</h2>
-    <div class="films-grid">
+  <!-- ARTIST PROFILE & LIVE STAGE PROOF (OVERVIEW) -->
+  <section id="overview">
+    <span class="section-tag">Overview &bull; Creative & Technical Pillars</span>
+    <h2 class="section-title">The Kinetic Lens: Stage Performance & Narrative Direction</h2>
+    <p class="section-desc">A seasoned visual storyteller combining over a decade of post-production discipline with active theatrical and stage direction. Adept at capturing unscripted performance emotion under complex auditorium illumination.</p>
+    
+    <div class="pillars-grid">
+      <div class="pillar-card">
+        <h3>01 / Dynamic Stage Lighting & Tone Balance</h3>
+        <p>Trained to preserve performer expressions and vibrant color fidelity against high-output LED backdrops and saturated stage gels.</p>
+      </div>
+      <div class="pillar-card">
+        <h3>02 / Kinetic Action & Real-Time Tracking</h3>
+        <p>Honed across active live performances and wildlife field expeditions; engineered for spontaneous performer movement and stage energy.</p>
+      </div>
+      <div class="pillar-card">
+        <h3>03 / Theatrical Character & Narrative Climax</h3>
+        <p>Backed by 3 short films and 1 feature film, isolating the dramatic peak, gestures, and raw emotion that define memorable live shows.</p>
+      </div>
+    </div>
+  </section>
 
+  <!-- DIRECTORIAL LINEAGE (SHORT FILMS) -->
+  <section id="films">
+    <span class="section-tag">Directorial Lineage // SG Productions</span>
+    <h2 class="section-title">Original Short Films Directed by Saptarshi Goswami</h2>
+    <p class="section-desc">Tap on any film cover to watch directly on YouTube.</p>
+
+    <div class="films-grid">
       <!-- Film 1 -->
       <a href="https://www.youtube.com/watch?v=kUMUjIcLNR4" target="_blank" class="film-card">
         <div class="film-thumb">
           <img src="https://img.youtube.com/vi/kUMUjIcLNR4/maxresdefault.jpg" alt="Akhon Nedekha Nodir Xipare">
+          <span class="film-badge">Psychological Mystery</span>
           <div class="play-overlay"><div class="play-btn"><div class="play-triangle"></div></div></div>
         </div>
         <div class="film-body">
           <h3 class="film-title-en">AKHON NEDEKHA NADIR SIPARE</h3>
           <div class="film-title-as">এখন নেদেখা নদীৰ সিপাৰে</div>
           <div class="film-meta"><strong>Director:</strong> Saptarshi Goswami<br><strong>Story:</strong> Pallab Kashyap<br><strong>Screenplay:</strong> Manash Sarma</div>
+          <p class="film-synopsis">A moody, suspense-laden exploration of memory, isolation, and nocturnal tension under low-key chiaroscuro lighting.</p>
           <div class="watch-btn">▶ Watch on YouTube</div>
         </div>
       </a>
@@ -91,12 +157,14 @@
       <a href="https://www.youtube.com/watch?v=KBalYFfAZYk" target="_blank" class="film-card">
         <div class="film-thumb">
           <img src="https://img.youtube.com/vi/KBalYFfAZYk/maxresdefault.jpg" alt="Pratyakhya">
+          <span class="film-badge">Existential Noir</span>
           <div class="play-overlay"><div class="play-btn"><div class="play-triangle"></div></div></div>
         </div>
         <div class="film-body">
           <h3 class="film-title-en">PRATYAKHYA</h3>
           <div class="film-title-as">প্রত্যাশা (Expectation)</div>
           <div class="film-meta"><strong>Director:</strong> Saptarshi Goswami<br><strong>Written by:</strong> Manash Sarma<br><strong>Production:</strong> SG Productions</div>
+          <p class="film-synopsis">An evocative narrative framing solitary human silhouettes navigating decaying urban architecture toward backlit doorways.</p>
           <div class="watch-btn">▶ Watch on YouTube</div>
         </div>
       </a>
@@ -105,23 +173,77 @@
       <a href="https://youtu.be/JzGssFcknz8" target="_blank" class="film-card">
         <div class="film-thumb">
           <img src="https://img.youtube.com/vi/JzGssFcknz8/maxresdefault.jpg" alt="Moi">
+          <span class="film-badge">Psychological Drama</span>
           <div class="play-overlay"><div class="play-btn"><div class="play-triangle"></div></div></div>
         </div>
         <div class="film-body">
           <h3 class="film-title-en">MOI</h3>
           <div class="film-title-as">মই (Self / I)</div>
           <div class="film-meta"><strong>Director:</strong> Saptarshi Goswami<br><strong>Production:</strong> SG Productions<br><strong>Format:</strong> Cinematic Short</div>
+          <p class="film-synopsis">An intimate character study focused on an obsessive writer surrounded by crumpled drafts and amber desk lamp glow.</p>
           <div class="watch-btn">▶ Watch on YouTube</div>
         </div>
       </a>
-
     </div>
   </section>
 
-  <section class="contact">
-    <h2>Commission a Project</h2>
-    <p>Available for film direction, concert pit credentials, and narrative film cinematography.</p>
-    <a href="mailto:saptarshi.goswami2006@gmail.com">saptarshi.goswami2006@gmail.com</a>
+  <!-- LIVE PERFORMANCE & DRAMATIC LIGHTING -->
+  <section id="lighting">
+    <span class="section-tag">Section 01 // Live Performance & Dramatic Lighting</span>
+    <h2 class="section-title">Controlling Contrast, Rim Light & Stage Haze</h2>
+    <p class="section-desc">Dual-source atmospheric lighting under stage haze, preserving deep tactile shadows while maintaining crisp edge definition through volumetric mist.</p>
+  </section>
+
+  <!-- KINETIC ACTION & TRACKING -->
+  <section id="tracking">
+    <span class="section-tag">Section 02 // Kinetic Action & Tracking</span>
+    <h2 class="section-title">Split-Second Reaction in Demanding Conditions</h2>
+    <p class="section-desc">Documenting fast-moving subjects through particulate morning fog in Assam—testing optical sharpness and predictive autofocus tracking equivalent to arena pyrotechnics.</p>
+  </section>
+
+  <!-- CANDID CHARACTER & DOCUMENTARY PORTRAITS -->
+  <section id="portraits">
+    <span class="section-tag">Section 03 // Character & Expressive Emotion</span>
+    <h2 class="section-title">Raw Character & Unscripted Humanity</h2>
+    <p class="section-desc">Low-key environmental portraiture in near-total darkness and high-contrast monochrome street motion honoring natural human cadence and emotion.</p>
+  </section>
+
+  <!-- NARRATIVE RHYTHM & ENVIRONMENTAL SCALE -->
+  <section id="rhythm">
+    <span class="section-tag">Section 04 // Narrative Rhythm & Environmental Scale</span>
+    <h2 class="section-title">Human Scale, Solitude & Narrative Context</h2>
+    <p class="section-desc">Urban leading lines, layered hillside tea trails, agricultural paddy terrace geometry, and expansive riverine sandbars.</p>
+  </section>
+
+  <!-- CONCERT COVERAGE, ETHICS & SPECIFICATIONS -->
+  <section id="specs">
+    <span class="section-tag">Section 05 // Concert Coverage & Technical Capabilities</span>
+    <h2 class="section-title">Booking & Specifications</h2>
+    
+    <div class="specs-grid">
+      <div class="spec-box">
+        <h3>Rapid Press & Social Delivery</h3>
+        <p><strong>Night-of Selects (Within 2 Hours):</strong> 5–10 color-graded teaser frames delivered before midnight for instant artist social media posting.<br><br>
+        <strong>Full Master Gallery (Within 48 Hours):</strong> Comprehensive catalog of performer close-ups, full-stage atmospheres, and backstage moments.</p>
+      </div>
+
+      <div class="spec-box">
+        <h3>Ethics & Conduct On-Site</h3>
+        <p>Strict adherence to pit safety, the standard "first three songs, no flash" rule, venue security guidelines, and non-intrusive stage presence during live performances.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT / BOOKING -->
+  <section id="contact" style="border:none;">
+    <div class="contact">
+      <span class="section-tag">Available for Gigs, Festivals & Tour Support</span>
+      <h2 style="font-family:'Cinzel',serif; font-size:2.2rem; color:#fff; margin-bottom:12px;">Saptarshi Goswami</h2>
+      <p style="color:var(--text-muted); margin-bottom:20px;">Email: <strong>saptarshi.goswami2006@gmail.com</strong></p>
+      <div class="email-box">
+        <a href="mailto:saptarshi.goswami2006@gmail.com" class="email-link">Send Booking Inquiry</a>
+      </div>
+    </div>
   </section>
 
   <footer>
